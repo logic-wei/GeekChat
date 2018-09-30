@@ -35,35 +35,4 @@ public class RegisterPresenterImpl implements IRegisterMVP.IPresenter {
             }
         });
     }
-
-    @Override
-    public void test(String info) {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Socket socket = new Socket("149.28.70.170", 24343);
-                    InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    final char[] buff = new char[100];
-                    bufferedReader.read(buff);
-                    ((Activity)mContext).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mView.test(String.valueOf(buff));
-                        }
-                    });
-                    socket.close();
-                } catch (Exception e) {
-                    Log.e("test", e.toString());
-                    ((Activity)mContext).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mView.test("failed");
-                        }
-                    });
-                }
-            }
-        }.start();
-    }
 }

@@ -39,7 +39,7 @@ public class RegisterViewImpl extends BaseActivity implements IRegisterMVP.IView
             case IRegisterMVP.IView.STATE_SUCCEED:
                 if (mTryingDialog != null)
                     mTryingDialog.dismiss();
-                Toast.makeText(this, "register failed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "register successful!", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
             case IRegisterMVP.IView.STATE_TRYING:
@@ -63,13 +63,8 @@ public class RegisterViewImpl extends BaseActivity implements IRegisterMVP.IView
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.button_register:
-
+                mPresenter.register(mIdEditText.getText().toString(), mPasswordEditText.getText().toString());
                 break;
         }
-    }
-
-    @Override
-    public void test(String info) {
-        Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
     }
 }

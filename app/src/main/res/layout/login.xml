@@ -50,14 +50,6 @@
         android:layout_alignTop="@+id/button_register"
         android:text="login" />
 
-    <Button
-        android:id="@+id/button_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_register"
-        android:layout_centerHorizontal="true"
-        android:text="connect" />
-
     <!--
     <com.dd.processbutton.iml.ActionProcessButton
         android:id="@+id/button_test"
@@ -68,19 +60,4 @@
         android:text="connect"/>
         -->
 
-    <Button
-        android:id="@+id/button_test2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_test"
-        android:layout_centerHorizontal="true"
-        android:text="send" />
-
-    <Button
-        android:id="@+id/button_test3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_test2"
-        android:layout_centerHorizontal="true"
-        android:text="close" />
 </RelativeLayout>

@@ -18,13 +18,9 @@ public interface IRegisterMVP {
         int STATE_FAILED = 1;
         int STATE_SUCCEED = 2;
         void changeState(int state);
-        //for test
-        void test(String info);
     }
 
     interface IPresenter {
         void register(String id, String password);
-        //for test
-        void test(String info);
     }
 }
