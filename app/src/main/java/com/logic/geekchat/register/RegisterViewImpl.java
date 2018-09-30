@@ -63,7 +63,7 @@ public class RegisterViewImpl extends BaseActivity implements IRegisterMVP.IView
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.button_register:
-
+                mPresenter.register(mIdEditText.getText().toString(), mPasswordEditText.getText().toString());
                 break;
         }
     }

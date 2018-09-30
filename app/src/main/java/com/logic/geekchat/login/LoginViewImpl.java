@@ -14,10 +14,6 @@ import com.logic.geekchat.BaseActivity;
 import com.logic.geekchat.MainActivity;
 import com.logic.geekchat.R;
 import com.logic.geekchat.friends.FriendsViewImpl;
-import com.logic.geekchat.protocol.IClient;
-import com.logic.geekchat.protocol.OkClient;
-import com.logic.geekchat.protocol.Packet;
-import com.logic.geekchat.protocol.TcpClient;
 import com.logic.geekchat.register.RegisterViewImpl;
 
 import butterknife.BindView;
@@ -51,7 +47,7 @@ public class LoginViewImpl extends BaseActivity implements ILoginMVP.IView {
                 if (mTryingDialog != null)
                     mTryingDialog.dismiss();
                 Toast.makeText(this, "login succeed!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, FriendsViewImpl.class));
+                startActivity(new Intent(this, MainActivity.class));
                 break;
             case ILoginMVP.IView.STATE_FAILED:
                 if (mTryingDialog != null)
@@ -69,26 +65,15 @@ public class LoginViewImpl extends BaseActivity implements ILoginMVP.IView {
         mPresenter = new LoginPresenter(this);
     }
 
-    @OnClick({R.id.button_login, R.id.button_register, R.id.button_test, R.id.button_test2, R.id.button_test3})
+    @OnClick({R.id.button_login, R.id.button_register})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.button_register:
                 startActivity(new Intent(this, RegisterViewImpl.class));
-                //startActivity(new Intent(this, LoginViewImpl.class));
                 break;
             case R.id.button_login:
-                //mPresenter.login(mIdEditText.getText().toString(), mPasswordEditText.getText().toString());
-                startActivity(new Intent(this, MainActivity.class));
-                break;
-            case R.id.button_test://connect
-                break;
-            case R.id.button_test2://send packet
-
-                break;
-            case R.id.button_test3://close
-
+                mPresenter.login(mIdEditText.getText().toString(), mPasswordEditText.getText().toString());
                 break;
         }
     }
-    OkClient mClient;
 }
