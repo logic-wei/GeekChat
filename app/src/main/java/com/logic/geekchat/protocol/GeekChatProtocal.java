@@ -150,9 +150,8 @@ public class GeekChatProtocal {
         public void onSocketConnectionSuccess(Context context, ConnectionInfo info, String action) {
             super.onSocketConnectionSuccess(context, info, action);
             Log.i(TAG, action);
-            mManager.getPulseManager().setPulseSendable(new WatchdogPulse());
-            Log.e(TAG, "frequency:" + mManager.getOption().getPulseFrequency());
-            mManager.getPulseManager().pulse();
+            //mManager.getPulseManager().setPulseSendable(new WatchdogPulse());
+            //mManager.getPulseManager().pulse();
             for(ProtocalHead header : bodyPackers) {
                 mManager.send(header);
             }

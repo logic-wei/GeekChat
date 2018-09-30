@@ -41,7 +41,7 @@ public class LoginModelImpl implements ILoginMVP.IModel {
                 JSONObject json = jsonPacker.getJson();
                 GeekChatProtocal protocal = GeekChatProtocal.getInstance();
 
-                if(rpc.getMethods() == "com.login.seed.respond") {
+                if(rpc.getMethods().equals("com.login.seed.respond")) {
                     Log.i(TAG, "com.login.seed.respond");
                     String seedString = null;
                     try {
@@ -67,7 +67,7 @@ public class LoginModelImpl implements ILoginMVP.IModel {
 
                     rpc.setMethods("com.login.respond");
                     protocal.registerMethodsRpc(rpc);
-                } else if(rpc.getMethods() == "com.login.respond"){
+                } else if(rpc.getMethods().equals("com.login.respond")){
                     Log.i(TAG, "com.login.respond");
                     try {
                         int errno = json.getInt("errno");

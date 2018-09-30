@@ -14,13 +14,27 @@ public class RegisterModelImpl implements IRegisterMVP.IModel {
     private static final String TAG  = "RegisterModelImpl";
 
     @Override
-    public void register(String id, String password, OnRegisterResult onRegisterResult) {
+    public void register(String id, String password, final OnRegisterResult onRegisterResult) {
         JSONObject json = new JSONObject();
         ProtocalListener listener = new ProtocalListener() {
             @Override
             public void onPackerReceived(GeekChatJsonMethodsRpc rpc, IBodyPacker packer) {
                 Log.i(TAG, "onPackerReceived");
                 GeekChatProtocal protocal = GeekChatProtocal.getInstance();
+                JsonPacker jsonPacker = (JsonPacker)packer;
+                JSONObject json = jsonPacker.getJson();
+                try {
+                    int errno = json.getInt("errno");
+                    if (errno == 0) {
+                        onRegisterResult.onResult(OnRegisterResult.RESULT_SUCCEED);
+                    } else {
+                        onRegisterResult.onResult(OnRegisterResult.RESULT_UNKNOWN_ERROR);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    onRegisterResult.onResult(OnRegisterResult.RESULT_UNKNOWN_ERROR);
+                }
                 protocal.unregisterMethodsRpc(rpc);
             }
 
@@ -29,6 +43,8 @@ public class RegisterModelImpl implements IRegisterMVP.IModel {
                 Log.i(TAG, "onError");
                 GeekChatProtocal protocal = GeekChatProtocal.getInstance();
                 protocal.unregisterMethodsRpc(rpc);
+
+                onRegisterResult.onResult(OnRegisterResult.RESULT_UNKNOWN_ERROR);
             }
         };
         GeekChatJsonMethodsRpc rpc = new GeekChatJsonMethodsRpc("com.register.respond", listener);
