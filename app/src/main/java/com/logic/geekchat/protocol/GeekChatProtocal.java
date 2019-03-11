@@ -170,7 +170,7 @@ public class GeekChatProtocal {
         }
     }
 
-    public void SendPacker(IBodyPacker bodyPacker) throws UnsupportedEncodingException, BodyLengthException, CRCMistakeException, InterruptedException {
+    public void sendPacker(IBodyPacker bodyPacker) throws UnsupportedEncodingException, BodyLengthException, CRCMistakeException, InterruptedException {
         ProtocalHead header = new ProtocalHead();
         header.setBodyPacker(bodyPacker);
         if(mManager.isConnect()) {

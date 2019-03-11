@@ -1,4 +1,4 @@
-package com.logic.geekchat.register;
+package com.logic.geekchat.view.register;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -11,13 +11,14 @@ import android.widget.Toast;
 
 import com.logic.geekchat.BaseActivity;
 import com.logic.geekchat.R;
+import com.logic.geekchat.presenter.register.IRegisterPresenter;
+import com.logic.geekchat.presenter.register.RegisterPresenterImpl;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterViewImpl extends BaseActivity implements IRegisterMVP.IView {
-
+public class RegisterViewImpl extends BaseActivity implements IRegisterView {
     @BindView(R.id.edit_text_id)
     EditText mIdEditText;
     @BindView(R.id.edit_text_password)
@@ -26,23 +27,23 @@ public class RegisterViewImpl extends BaseActivity implements IRegisterMVP.IView
     Button mRegisterButton;
 
     private AlertDialog mTryingDialog;
-    private IRegisterMVP.IPresenter mPresenter;
+    private IRegisterPresenter mPresenter;
 
     @Override
     public void changeState(int state) {
         switch (state) {
-            case IRegisterMVP.IView.STATE_FAILED:
+            case STATE_FAILED:
                 if (mTryingDialog != null)
                     mTryingDialog.dismiss();
                 Toast.makeText(this, "register failed!", Toast.LENGTH_SHORT).show();
                 break;
-            case IRegisterMVP.IView.STATE_SUCCEED:
+            case STATE_SUCCEED:
                 if (mTryingDialog != null)
                     mTryingDialog.dismiss();
                 Toast.makeText(this, "register successful!", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
-            case IRegisterMVP.IView.STATE_TRYING:
+            case STATE_TRYING:
                 mTryingDialog = new ProgressDialog.Builder(this)
                         .setMessage("waiting...")
                         .create();
@@ -56,7 +57,7 @@ public class RegisterViewImpl extends BaseActivity implements IRegisterMVP.IView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         ButterKnife.bind(this);
-        mPresenter = new RegisterPresenterImpl(this, this);
+        mPresenter = new RegisterPresenterImpl(this);
     }
 
     @OnClick({R.id.button_register})

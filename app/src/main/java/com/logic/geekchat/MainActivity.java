@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.logic.geekchat.friends.FriendsViewImpl;
+import com.logic.geekchat.view.friends.FriendsViewImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mFragments.add(new FriendsViewImpl());
-        mFragments.add(new FriendsViewImpl());
+        //mFragments.add(new FriendsViewImpl());
         mMainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), mFragments);
         mMainViewPager.setAdapter(mMainPagerAdapter);
     }

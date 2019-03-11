@@ -1,9 +1,9 @@
-package com.logic.geekchat.friends;
+package com.logic.geekchat.model.ChatClient;
 
 public class Friend {
-    String mId;
+    private String mId;
 
-    public void setId(String id) {
+    public Friend(String id) {
         mId = id;
     }
 

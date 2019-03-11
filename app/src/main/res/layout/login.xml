@@ -35,29 +35,29 @@
 
     <Button
         android:id="@+id/button_register"
-        android:layout_width="wrap_content"
+        android:layout_width="236dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/edit_text_id"
-        android:layout_marginTop="244dp"
+        android:layout_below="@id/button_login"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_blue_light"
         android:text="register" />
 
     <Button
         android:id="@+id/button_login"
-        android:layout_width="wrap_content"
+        android:layout_width="236dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/edit_text_id"
-        android:layout_alignTop="@+id/button_register"
+        android:layout_below="@+id/edit_text_password"
+        android:layout_centerHorizontal="true"
+        android:background="?attr/colorAccent"
         android:text="login" />
 
-    <!--
-    <com.dd.processbutton.iml.ActionProcessButton
-        android:id="@+id/button_test"
+    <CheckBox
+        android:id="@+id/check_box_force"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_register"
-        android:layout_centerHorizontal="true"
-        android:text="connect"/>
-        -->
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="force" />
+
 
 </RelativeLayout>
